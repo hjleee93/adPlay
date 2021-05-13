@@ -11,20 +11,23 @@
   </title>
   <script async src="https://cdn.stat-rock.com/player.js"></script>
   <script>
+    var playApi;
     function init(api) {
-      // if (api) {
+      if (api) {
+        playApi = api;
+     
       //   console.log(api)
       //   api.on('AdLoaded',
       //     function () { console.log('AdLoaded') });
 
       //   api.on('AdStarted', function () { console.log('AdStarted'); api.skipAd() }
       //   );
-      //   api.on('AdVideoComplete', function () { console.log('AdVideoComplete') }
-      //   );
+        // api.on('AdVideoComplete', function () {console.log('AdVideoComplete') }
+        // );
       //   api.on('AdSkipped',
       //     function () { console.log('AdSkipped') });
 
-      // } else { console.log('blank'); }
+       } else { console.log('blank'); }
     }
     
   </script>

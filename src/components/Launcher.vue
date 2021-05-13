@@ -56,17 +56,29 @@
                     </div>
                 </div>
             </div>
+            <!-- 광고~게임 여부 -->
+            <div class="ad-container" :class="isAdPopupOn ? 'on' : 'off'">
+                <b-card class="mb-2">
+                    <b-card-text>
+                        광고를 보면 게임을 이어 나가실 수 있습니다. 광고를
+                        보시겠습니까?
+                    </b-card-text>
+                    <div class="ad-btn">
+                        <b-button class="ad-ok" @click="adShow">네</b-button>
+                        <b-button @click="adSkip">아니요</b-button>
+                    </div>
+                </b-card>
+            </div>
 
             <!-- 게임 종료 후 보여지는 화면 -->
             <div class="fin-container" v-if="type === '@gameOver'">
-                <div class="fin-wrap">
+                <div class="fin-wrap" :class="isFinWrap ? 'on' : 'off'">
                     <div class="fin-thumb-div">
                         <img
                             class="no-drag fin-thumb-img"
                             :src="gameData.thumbnailImg"
                         />
                     </div>
-
                     <div class="retry-btn-container" @click="playRetry">
                         <img
                             class="no-drag retry-btn"
@@ -91,7 +103,9 @@
         </div>
     </div>
 </template>
-
+ <script async src="https://cdn.stat-rock.com/player.js"></script>
+    
+  
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 
@@ -116,6 +130,12 @@ export default class Launcher extends Vue {
     //sdk, iframe 로딩 확인용 변수
     isSdkLoadDone = false;
     isGameLoadDone = false;
+
+    //광고팝업
+    isAdPopupOn = false;
+
+    //종료화면
+    isFinWrap = false;
 
     gameData: GameData = {
         gameTitle: "",
@@ -177,13 +197,20 @@ export default class Launcher extends Vue {
                 case "@gameReady": {
                     this.isDimmed = true;
                     this.isGameLoadDone = true;
-                    //@ts-ignore
-                    window.start()
+                    // this.adPopup();
                     break;
                 }
                 case "@updateScore": {
                     this.score = message.data.score;
                     this.logon = false;
+                    break;
+                }
+                case "@adStart": {
+                    // console.log(message.data.score);
+                    this.score = message.data.score;
+                    this.adShow();
+
+                    // this.score = message.data.score;
                     break;
                 }
                 case "@gameOver": {
@@ -192,7 +219,6 @@ export default class Launcher extends Vue {
                         this.score = message.data.score;
                         this.logon = false;
                     }
-
                     break;
                 }
             }
@@ -207,9 +233,6 @@ export default class Launcher extends Vue {
         this.isBackground = false;
         this.isDimmed = false;
         this.logon = false;
-
-        // if (this.gameData.playGameAd === "true") {
-        // }
     }
     // 게임 재시작
     playRetry(): void {
@@ -217,8 +240,7 @@ export default class Launcher extends Vue {
             { type: "@gameRetry" },
             "*"
         );
-        if (this.gameData.restartGameAd === "true") {
-        }
+
         this.isDimmed = false;
         this.logon = false;
     }
@@ -240,45 +262,46 @@ export default class Launcher extends Vue {
         this.isDimmed = false;
         this.logon = false;
     }
+    //ad 여부
+    adPopup() {
+        this.isFinWrap = false;
+        this.isAdPopupOn = true;
+        this.isDimmed = true;
+        this.pauseGame();
+    }
+    //ad on
+    adShow() {
+        this.isAdPopupOn = false;
 
-    adStarted() {
+        //@ts-ignore
+        window.start();
+
+        setTimeout(() => {
+            //@ts-ignore
+            window.playApi.on("AdVideoComplete", () => {
+                console.log("AdVideoComplete");
+                this.retryGameAd();
+            });
+        }, 1000);
+    }
+
+    retryGameAd() {
         this.getIframeElement().contentWindow?.postMessage(
-            { type: "@soundOff" },
-            "*"
-        );
-        this.getIframeElement().contentWindow?.postMessage(
-            { type: "@gamePause" },
+            { type: "@retryGameAd", score: ++this.score },
             "*"
         );
     }
-
-    adError() {
-        this.getIframeElement().contentWindow?.postMessage(
-            { type: "@soundOn" },
-            "*"
-        );
-        this.getIframeElement().contentWindow?.postMessage(
-            { type: "@gameResume" },
-            "*"
-        );
-    }
-
-    adFinished() {
-        this.getIframeElement().contentWindow?.postMessage(
-            { type: "@soundOn" },
-            "*"
-        );
-
-        if (this.gameData.endGameAd === "false") {
-            console.log("?");
-            this.getIframeElement().contentWindow?.postMessage(
-                { type: "@gameResume" },
-                "*"
-            );
-        }
+    //ad skip
+    adSkip() {
+        this.isAdPopupOn = false;
+        this.isFinWrap = true;
     }
 
     async mounted() {
+        this.getIframeElement().contentWindow?.postMessage(
+            { type: "@gameReady" },
+            "*"
+        );
         window.addEventListener("message", this.onMessage);
 
         this.readTextFile();

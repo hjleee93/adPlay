@@ -176,6 +176,9 @@
   margin: 0 auto;
   display: block !important;
 }
+.fin-wrap.off{
+  display: none !important;
+}
 .thumbnail-img {
   width: 290px;
 }
@@ -201,6 +204,27 @@
   margin-bottom: 3px;
 }
 
+/* 광고 팝업 */
+.ad-container{
+  z-index: 999;
+position:absolute;
+top:40%;
+left:50%;
+margin-left:-20px;
+transform: translate(-50%, -50%);
+background-color: #ff7700;
+}
+.ad-btn{
+  text-align: center;
+}
+.ad-ok{
+  margin-right: 10%
+}
+.ad-container.off{
+display: none;
+}
+
+/* 반응형 */
 @media (max-width: 700px) {
   .thumbnail-img,
   .play-btn {
