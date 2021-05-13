@@ -1,0 +1,363 @@
+
+.background.off{
+  background-image: none;
+}
+.game-info-div.off{
+  display: none;
+}
+.no-drag {
+  -webkit-user-drag: none;
+  -ms-user-select: none;
+  -moz-user-select: -moz-none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  user-select: none;
+}
+.zempie-logo{
+  height: 20px;
+  float: left;
+  position: absolute;
+  top: 9px;
+  right: 10px;
+}
+.game-screen {
+  position: absolute;
+  left: -2px;
+  padding-right: 2px;  
+  width: 100%;
+  height: calc(100vh - 35px);
+  overflow: hidden;
+}
+.loading {
+  height: 191px;
+}
+.top-menu {
+  width: 100%;
+  height: 35px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  background-color: #ffffff;
+  text-align: center;
+}
+.loading-div {
+  background-repeat: no-repeat;
+  background-size: 118% 136%;
+  background-position: center center;
+  position: absolute;
+  left: 0%;
+  top: 0%;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+.loading-div::before {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  bottom: 50px;
+  filter: blur(20px);
+  background: rgba(255, 255, 255, 0.5);
+  content: "";
+  -webkit-backdrop-filter: blur(30px);
+  backdrop-filter: blur(30px);
+  
+}
+
+.game-info-div {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: translate(0px, -50%);
+  text-align: center;
+}
+
+.bottom-logo {
+  position: absolute;
+  display: block;
+  height: 25px;
+  transform: translate(-50%, -50%);
+}
+.bottom-logo:hover{
+  cursor: pointer;
+}
+.logo-container {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  left: 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+}
+.logo-container.off{
+  display: none;
+}
+.in-game{
+  border-top-width: 0px;
+}
+.game-title {
+  font-size: 42pt;
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.play-btn:hover {
+  cursor: pointer;
+}
+
+.dimmed.on {
+  filter: blur(20px);
+}
+
+.score-title {
+  color: #ffffff;
+  font-size: 42pt;
+  
+  /* position: absolute !important;
+  top: 28%; */
+}
+.score-result {
+  color: #ffffff;
+  font-size: 130pt;
+  margin-top: -25px;
+  margin-bottom: 30px;
+  height: 191px;
+  /* position: absolute !important;
+  top: 31%; */
+}
+.score {
+  color: #1a5a96;
+  margin-left: 4px;
+}
+.retry-btn:hover {
+  cursor: pointer;
+}
+.retry-btn-container {
+ 
+  text-align: center;
+    margin: 0 auto;
+}
+.fin-container {
+  position: absolute;
+  top: 30px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.fin-wrap {
+  position: absolute;
+  top: 46%;
+  transform: translate(0px, -50%);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.fin-thumb-img {
+  width: 80%;
+  margin: 0 auto;
+  display: block !important;
+}
+.thumbnail-img {
+  width: 290px;
+}
+.rename-div {
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 20px;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+.leader-board-div {
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: 15px;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+.play-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 3px;
+}
+
+@media (max-width: 700px) {
+  .thumbnail-img,
+  .play-btn {
+    width: 40%;
+    display: block !important;
+    margin: 0 auto;
+  }
+
+  .game-title {
+    font-size: 30pt;
+  }
+
+  .fin-thumb-img,
+  .score-result,
+  .retry-btn {
+    width: 60%;
+    display: block !important;
+    margin: 0 auto;
+  }
+
+  .score-title {
+    font-size: 25pt;
+  }
+  .score-result {
+    margin-top: 10px;
+    font-size: 60pt;
+    text-align: center;
+    width: 100%;
+    height: 80px;
+  }
+
+  .logo-container {
+    height: 30px;
+  }
+  .loadingio-spinner-eclipse-ebw4655yzwb {
+    transform: scale( 0.5 );
+  }
+
+  .spinner-div {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+@media (max-height: 800px) {
+  .thumbnail-img {
+    width: 60%;
+    display: block !important;
+    margin: 0 auto;
+  }
+  .fin-thumb-img {
+    width: 70%;
+    display: block !important;
+    margin: 0 auto;
+  }
+  .play-btn {
+    width: 60%;
+    display: block !important;
+    margin: 0 auto;
+  }
+  .retry-btn{
+    width: 60%
+  }
+  .score-result {
+    display: none !important;
+  }
+  .game-title {
+    font-size: 35px;
+  }
+  .score-title {
+    display: none !important;
+  }
+
+  .logo-container {
+    height: 30px;
+  }
+  .loadingio-spinner-eclipse-ebw4655yzwb {
+    transform: scale( 0.5 );
+  }
+
+  .spinner-div {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media (max-height: 860px) {
+  .fin-thumb-img {
+    width: 50%;
+  }
+  .retry-btn {
+    width: 80%;
+  }
+  .fin-thumb-img {
+    width: 50%;
+  }
+  .retry-btn {
+    width: 54%;
+  }
+  .score-title {
+    font-size: 35pt;
+  }
+  .score-result {
+    display: none !important;
+  }
+  .logo-container {
+     height: 30px;
+  }
+  .loadingio-spinner-eclipse-ebw4655yzwb {
+    transform: scale( 0.5 );
+  }
+
+  .spinner-div {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+/* 로딩 */
+@keyframes ldio-13e9g3vw80s {
+  0% { transform: rotate(0deg) }
+  50% { transform: rotate(180deg) }
+  100% { transform: rotate(360deg) }
+}
+.ldio-13e9g3vw80s div {
+  position: absolute;
+  animation: ldio-13e9g3vw80s 1s linear infinite;
+  width: 152.79999999999998px;
+  height: 152.79999999999998px;
+  top: 20.099999999999998px;
+  left: 19.099999999999998px;
+  border-radius: 50%;
+  box-shadow: 0 3.82px 0 0 #ff7700;
+  transform-origin: 76.39999999999999px 78.31px;
+}
+.loadingio-spinner-eclipse-ebw4655yzwb {
+  width: 191px;
+  height: 191px;
+  display: inline-block;
+  overflow: hidden;
+  background: none;
+}
+.ldio-13e9g3vw80s {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform: translateZ(0) scale(1);
+  backface-visibility: hidden;
+  transform-origin: 0 0; /* see note above */
+}
+.ldio-13e9g3vw80s div { box-sizing: content-box; }
+/* generated by https://loading.io/ */

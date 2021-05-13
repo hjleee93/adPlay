@@ -1,0 +1,11 @@
+{
+ 
+        "gameTitle": "Crunch Candy",
+        "gameSource": "game/index.html",
+        "thumbnailImg": "img/thumbnail/thumb_candy.png",
+        "endGameAd":"true",
+        "restartGameAd" : "false",
+        "playGameAd" : "false",
+        "rankingGameId": "1"
+
+}
