@@ -1,8 +1,8 @@
 {
  
-        "gameTitle": "Crunch Candy",
+        "gameTitle": "Shark Frenzy",
         "gameSource": "game/index.html",
-        "thumbnailImg": "img/thumbnail/thumb_candy.png",
+        "thumbnailImg": "img/thumbnail/thumb_shark.png",
         "endGameAd":"true",
         "restartGameAd" : "false",
         "playGameAd" : "false",
