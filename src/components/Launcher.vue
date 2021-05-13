@@ -177,6 +177,7 @@ export default class Launcher extends Vue {
                 case "@gameReady": {
                     this.isDimmed = true;
                     this.isGameLoadDone = true;
+                    //@ts-ignore
                     window.start()
                     break;
                 }
