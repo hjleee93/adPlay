@@ -72,7 +72,8 @@
 
             <!-- 게임 종료 후 보여지는 화면 -->
             <div class="fin-container" v-if="type === '@gameOver'">
-                <div class="fin-wrap" :class="isFinWrap ? 'on' : 'off'">
+                
+                <div class="fin-wrap" >
                     <div class="fin-thumb-div">
                         <img
                             class="no-drag fin-thumb-img"
@@ -209,14 +210,15 @@ export default class Launcher extends Vue {
                     // console.log(message.data.score);
                     this.score = message.data.score;
                     this.adShow();
-
                     // this.score = message.data.score;
                     break;
                 }
                 case "@gameOver": {
                     if (this.gameData.endGameAd === "true") {
+                        
                         this.isDimmed = true;
                         this.score = message.data.score;
+                        console.log(this.score)
                         this.logon = false;
                     }
                     break;
@@ -240,7 +242,6 @@ export default class Launcher extends Vue {
             { type: "@gameRetry" },
             "*"
         );
-
         this.isDimmed = false;
         this.logon = false;
     }
@@ -282,7 +283,7 @@ export default class Launcher extends Vue {
                 console.log("AdVideoComplete");
                 this.retryGameAd();
             });
-        }, 1000);
+        }, 2000);
     }
 
     retryGameAd() {
