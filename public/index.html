@@ -9,51 +9,44 @@
   <title>
     <%= htmlWebpackPlugin.options.title %>
   </title>
-  <script async src="https://cdn.stat-rock.com/player.js"></script>
-  <script>
-    var playApi;
-    function init(api) {
-      if (api) {
-        playApi = api;
-     
-      //   console.log(api)
-      //   api.on('AdLoaded',
-      //     function () { console.log('AdLoaded') });
-
-      //   api.on('AdStarted', function () { console.log('AdStarted'); api.skipAd() }
-      //   );
-        // api.on('AdVideoComplete', function () {console.log('AdVideoComplete') }
-        // );
-      //   api.on('AdSkipped',
-      //     function () { console.log('AdSkipped') });
-
-       } else { console.log('blank'); }
-    }
-    
-  </script>
+  <script type='text/javascript' src="https://cdn.applixir.com/applixir.sdk3.0m.js"></script>
 </head>
 
 <body>
+  <div id="applixir_vanishing_div" hidden>
+    <iframe id="applixir_parent" allow="autoplay; fullscreen"></iframe>
+</div>
   <noscript>
     <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
         Please enable it to continue.</strong>
   </noscript>
   <div id="app"></div>
   <!-- built files will be auto injected -->
-
-  <script data-playerPro="current">
-    function start() {
-      var s = document.querySelector('script[data-playerPro="current"]');
-      
-      // s.removeAttribute("data-playerPro");
-     
-      (playerPro = window.playerPro || []).push({
-        id: "i4fDMuyOig9G",
-        after: s,
-        init: init,
-      });
-    };
-  </script>
 </body>
+<script type='application/javascript'>
+  function adStatusCallback(status) {
+    console.log('Ad Status: ' + status);
+        if (status === "ad-initready") {
+           showRewardAdButton.hidden = false;
+        }
+
+  }
+
+  var options = {
+    zoneId: 4088, // the zone ID from the "Games" page
+    // devId: nnnn, // optional: your developer ID if using s2s callback
+    gameId: 6260, // optional: the ID for this game from the "Games" page for s2s callback
+    // custom1: nnnn, // optional: custom1 value for s2s callback
+    // custom2: nnnn, // optional: custom2 value for s2s callback
+    // dMode: n, // 0 for no MD5 checksum, 1 for MD5 checksum (recommended)
+    // fallback: n, // 0 for no fallbacks, 1 will show fallback ads when ads-unavailable
+    adStatusCb: adStatusCallback, // optional: function to provide helpful user messages
+
+  };
+  
+  invokeApplixirVideoUnit(options);
+  playApplixirVideoUnit(this.options);
+  
+</script>
 
 </html>
