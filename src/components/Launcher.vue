@@ -3,7 +3,6 @@
         <div class="top-menu">
             score <span class="score">{{ score }}</span>
         </div>
-
         <div class="game-screen" v-if="gameData.gameSource !== null">
             <!-- 게임영역 -->
             <iframe
@@ -73,7 +72,8 @@
 
             <!-- 게임 종료 후 보여지는 화면 -->
             <div class="fin-container" v-if="type === '@gameOver'">
-                <div class="fin-wrap">
+                
+                <div class="fin-wrap" >
                     <div class="fin-thumb-div">
                         <img
                             class="no-drag fin-thumb-img"
@@ -134,9 +134,6 @@ export default class Launcher extends Vue {
 
     //광고팝업
     isAdPopupOn = false;
-
-    //applixir
-    options = { zoneId: 4086, gameId: 6258, adStatusCb: this.adStatusCallback };
 
     //종료화면
     isFinWrap = false;
@@ -218,9 +215,10 @@ export default class Launcher extends Vue {
                 }
                 case "@gameOver": {
                     if (this.gameData.endGameAd === "true") {
+                        
                         this.isDimmed = true;
                         this.score = message.data.score;
-                        console.log(this.score);
+                        console.log(this.score)
                         this.logon = false;
                     }
                     break;
@@ -306,13 +304,8 @@ export default class Launcher extends Vue {
             "*"
         );
         window.addEventListener("message", this.onMessage);
-        //@ts-ignore
-      playApplixirVideoUnit(this.options);
-        //@ts-ignore
-        this.adStatusCallback
-        this.readTextFile();
 
-        
+        this.readTextFile();
     }
     beforeDestroy() {
         window.removeEventListener("message", this.onMessage);
@@ -321,9 +314,6 @@ export default class Launcher extends Vue {
     moveZempiePage(): void {
         window.open("https://zempie.com");
     }
-    adStatusCallback(status: any) {
-        console.log('Ad Status: ' + status);       
-   }
 }
 </script>
 
