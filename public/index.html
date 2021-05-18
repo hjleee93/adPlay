@@ -13,7 +13,7 @@
 </head>
 
 <body>
-  <div id="applixir_vanishing_div" hidden>
+  <div class="applixir-container" id="applixir_vanishing_div" hidden>
     <iframe id="applixir_parent" allow="autoplay; fullscreen"></iframe>
 </div>
   <noscript>
@@ -48,5 +48,16 @@
   playApplixirVideoUnit(this.options);
   
 </script>
-
+<style>
+  .applixir-container{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 999;
+    /* border: none; */
+    left: 500px;
+    /* transition: left 1s ease 0s; */
+    top: 50%;
+  }
+</style>
 </html>
